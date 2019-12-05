@@ -1,3 +1,3 @@
 # hotel-database
 
-![alt text](https://imgur.com/4ypZCXL.png)
+![alt text](project_v2.png)
