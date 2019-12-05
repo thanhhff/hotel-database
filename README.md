@@ -1,3 +1,3 @@
 # hotel-database
 
-![alt text](project_v2.png)
+![alt text](project_diagram.png)
