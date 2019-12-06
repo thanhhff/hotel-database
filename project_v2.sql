@@ -28,8 +28,9 @@ create table if not exists customers
 
 create table if not exists hotels
 (
-    hotel_id int not null,
-    location_id int,
+    hotel_id     int not null,
+    location_id  int not null,
+    hotel_name   varchar(50)  default '',
     primary key (hotel_id),
     foreign key (location_id) references locations(location_id)
 );
@@ -39,7 +40,6 @@ create table if not exists sections
     hotel_id   int         not null,
     section_id int         not null,
     room_type  varchar(30) not null default '',
-    floor      int         not null,
     primary key (hotel_id, section_id),
     foreign key (hotel_id) references hotels (hotel_id)
 );
@@ -58,6 +58,7 @@ create table if not exists rooms
     hotel_id     int         not null,
     section_id   int         not null,
     sale_id      int         not null,
+    floor        int         not null,
     primary key (hotel_id, section_id, room_id),
     foreign key (hotel_id, section_id) references sections(hotel_id, section_id),
     foreign key (sale_id) references sales(sale_id)
