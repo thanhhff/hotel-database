@@ -1,25 +1,25 @@
 #### Location Insert ####
 
 insert into locations (location_id, city)
-values (7000, 'Hà Nội'),
-       (7010, 'Hồ Chí Minh'),
-       (7020, 'Đà Nẵng'),
-       (7030, 'Hải Phòng'),
-       (7040, 'Quảng Ninh'),
-       (7050, 'Quảng Bình'),
-       (7060, 'Đà Lạt'),
-       (7070, 'Huế'),
-       (7080, 'Khánh Hoà'),
-       (7090, 'Lạng Sơn'),
-       (7110, 'Thanh Hoá'),
-       (7220, 'Nghệ An'),
-       (7330, 'Bắc Ninh'),
-       (7440, 'Hưng Yên'),
-       (7550, 'Nam Định'),
-       (7660, 'Phú Yên'),
-       (7770, 'Buôn Ma Thuật'),
-       (7880, 'Cần Thơ'),
-       (7990, 'Kiên Giang');
+values 	(7000, 'Ha Noi'),
+		(7010, 'Ho Chi Minh'),
+		(7020, 'Da Nang'),
+		(7030, 'Hai Phong'),
+		(7040, 'Quang Ninh'),
+		(7050, 'Quang Binh'),
+		(7060, 'Da Lat'),
+		(7070, 'Hue'),
+		(7080, 'Khanh Hoa'),
+		(7090, 'Lang Son'),
+		(7110, 'Thanh Hoa'),
+		(7220, 'Nghe An'),
+		(7330, 'Bac Ninh'),
+		(7440, 'Hung Yen'),
+		(7550, 'Nam Dinh'),
+		(7660, 'Phu Yen'),
+		(7770, 'Buon Ma Thuat'),
+		(7880, 'Can Tho'),
+		(7990, 'Kien Giang');
 
 #### Hotel Insert ####
 
