@@ -66,49 +66,49 @@ insert into sales (sale_id, apply_month, sale_percent) values
 (6122, 12, 50) ; 
 
 insert into sections (hotel_id, section_id, room_type) values
-(1100, 5101, 'Single'),  #Phong o 1 nguoi
-(1100, 5102, 'Double'),  #Phong o 2 nguoi
-(1100, 5103, 'Triple'),  #Phong o 3 nguoi
-(1100, 5104, 'Quad'),    #Phong o 4 nguoi
-(1100, 5105, 'King'),    #Phong co king-size bed
-(1100, 5106, 'Twim'),    #Phong co 2 giuong ngu
-(1200, 5201, 'Single'),  #Phong o 1 nguoi
-(1200, 5202, 'Double'),  #Phong o 2 nguoi
-(1200, 5203, 'Triple'),  #Phong o 3 nguoi
-(1200, 5204, 'Quad'),    #Phong o 4 nguoi
-(1200, 5206, 'Twim'),    #Phong co 2 giuong ngu
-(1300, 5301, 'Single'),  #Phong o 1 nguoi
-(1300, 5302, 'Double'),  #Phong o 2 nguoi
-(1300, 5303, 'Triple'),  #Phong o 3 nguoi
-(1300, 5304, 'Quad'),    #Phong o 4 nguoi
-(1300, 5305, 'King'),    #Phong co king-size bed
-(1300, 5306, 'President'), #Phong Tong thong
-(1400, 5401, 'Single'),  #Phong o 1 nguoi
-(1400, 5402, 'Double'),  #Phong o 2 nguoi
-(1400, 5403, 'Triple'),  #Phong o 3 nguoi
-(1400, 5404, 'Quad'),    #Phong o 4 nguoi
-(1400, 5405, 'King'),    #Phong co king-size bed
-(1500, 5501, 'Single'),  #Phong o 1 nguoi
-(1500, 5502, 'Double'),  #Phong o 2 nguoi
-(1500, 5503, 'Triple'),  #Phong o 3 nguoi
-(1500, 5504, 'Quad'),    #Phong o 4 nguoi
-(1500, 5505, 'King'),    #Phong co king-size bed
-(1500, 5506, 'Twim'),    #Phong co 2 giuong ngu
-(1600, 5601, 'Single'),  #Phong o 1 nguoi
-(1600, 5602, 'Double'),  #Phong o 2 nguoi
-(1600, 5605, 'King'),    #Phong co king-size bed
-(1600, 5606, 'Twim'),    #Phong co 2 giuong ngu
-(1700, 5701, 'Single'),  #Phong o 1 nguoi
-(1700, 5702, 'Double'),  #Phong o 2 nguoi
-(1700, 5703, 'Triple'),  #Phong o 3 nguoi
-(1700, 5706, 'Twim'),    #Phong co 2 giuong ngu
-(1800, 5801, 'Single'),  #Phong o 1 nguoi
-(1800, 5802, 'Double'),  #Phong o 2 nguoi
-(1800, 5803, 'Triple'),  #Phong o 3 nguoi
-(1800, 5804, 'Quad'),    #Phong o 4 nguoi
-(1800, 5805, 'Twin'),    #Phong co 2 giuong ngu
-(1900, 5901, 'Single'),  #Phong o 1 nguoi
-(1900, 5902, 'Double'),  #Phong o 2 nguoi
-(1900, 5903, 'Triple'); #Phong o 3 nguoi
+(1100, 5101, 'Single'),  
+(1100, 5102, 'Double'),  
+(1100, 5103, 'Triple'),  
+(1100, 5104, 'Quad'),    
+(1100, 5105, 'King'),    
+(1100, 5106, 'Twim'),    
+(1200, 5201, 'Single'),  
+(1200, 5202, 'Double'), 
+(1200, 5203, 'Triple'),  
+(1200, 5204, 'Quad'),    
+(1200, 5206, 'Twim'),    
+(1300, 5301, 'Single'),  
+(1300, 5302, 'Double'),  
+(1300, 5303, 'Triple'),  
+(1300, 5304, 'Quad'),    
+(1300, 5305, 'King'),    
+(1300, 5306, 'President'), 
+(1400, 5401, 'Single'),  
+(1400, 5402, 'Double'),  
+(1400, 5403, 'Triple'),  
+(1400, 5404, 'Quad'),    
+(1400, 5405, 'King'),    
+(1500, 5501, 'Single'),  
+(1500, 5502, 'Double'),  
+(1500, 5503, 'Triple'),  
+(1500, 5504, 'Quad'),    
+(1500, 5505, 'King'),    
+(1500, 5506, 'Twim'),    
+(1600, 5601, 'Single'),  
+(1600, 5602, 'Double'),  
+(1600, 5605, 'King'),    
+(1600, 5606, 'Twim'),    
+(1700, 5701, 'Single'),  
+(1700, 5702, 'Double'), 
+(1700, 5703, 'Triple'),  
+(1700, 5706, 'Twim'),    
+(1800, 5801, 'Single'),  
+(1800, 5802, 'Double'),  
+(1800, 5803, 'Triple'),  
+(1800, 5804, 'Quad'),    
+(1800, 5805, 'Twin'),    
+(1900, 5901, 'Single'),  
+(1900, 5902, 'Double'),  
+(1900, 5903, 'Triple'); 
 
 
