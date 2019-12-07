@@ -1,17 +1,12 @@
-# hotel-database
+# Hotel Reservation Database Lab Project
 
-Các File project_insert + project_create_table ở bên ngoài có vẻ ổn! Chạy thử lại các File này đi nhé!
+## 1. Introduction 
+- Member: 
+  1. Nguyễn Trung Thành   MSSV: 20176874
+  2. Lê Minh Quang        MSSV: 20176856
+  3. Kiều Đăng Nam        MSSV: 20176830
 
-# Viết nghĩa câu truy vấn vào đây !
----
-Ví dụ: Tìm kiếm khách sạn ở Hà Nội
+- Database: Hotel Reservation 
 
-1. 
-
-2.
-
-...
-
----
-
+- Database Diagram: 
 ![alt text](project_diagram_v3.png)
