@@ -1,10 +1,10 @@
 # Hotel Reservation Database Lab Project
 
 ## 1. Introduction 
-- **Member**
-  -  Nguyễn Trung Thành   MSSV: 20176874
-  -  Lê Minh Quang        MSSV: 20176856
-  -  Kiều Đăng Nam        MSSV: 20176830
+- **Members**
+  -  Nguyễn Trung Thành     MSSV: 20176874
+  -  Lê Minh Quang          MSSV: 20176856
+  -  Kiều Đăng Nam          MSSV: 20176830
 
 - **Database Name**: Hotel Reservation 
 
