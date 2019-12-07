@@ -33,7 +33,16 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 
 - **Thanh's Queries**
 
-
+1)  Đưa ra **Tên Khách Sạn**, **Tháng** mà khách sạn đó có `sale_percent` lớn nhất.
+2)  Đưa ra  **Tên Khách Sạn**, **Địa Chỉ Khách Sạn** có loại phòng `KING` rẻ nhất.
+3)  Đưa ra **Loại Phòng** mà các khách hàng giới tính `NAM` có xu hướng đặt.
+4) Thống kê các **Loại Phòng** mà các khách sạn hiện có.
+5) Đưa ra **Tên Khách Hàng** sống ở Hồ Chí Minh mà đặt phòng khách sạn ở Hà Nội.
+6) Đưa ra **Tên Khách Hàng** đã từng ở khách sạn JW Marriott Hanoi.
+7) Đưa ra **Số Lượng** khách `NAM` và khách `NỮ` đặt phòng trong tháng 1.
+8) Đưa ra **Tên Khách Sạn**, **Số Lượng Khách Hàng Từ Tỉnh Khác** đến thuê.
+9) Đưa ra **Tên Khách Hàng** ở Hà Nội thuê nhiều khách sạn nhất.
+10) Đưa ra **Tên Tỉnh Thành**, **Mức Chi Tiêu Trung Bình** của người dân trong mỗi tỉnh thành trên cả nước.
 
 
 
