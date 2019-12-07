@@ -4,7 +4,13 @@ Các File project_insert + project_hr ở bên ngoài có vẻ ổn! Chạy th�
 
 # Viết nghĩa câu truy vấn vào đây !
 ---
+Ví dụ: Tìm kiếm khách sạn ở Hà Nội
 
+1. 
+
+2.
+
+...
 
 ---
 
