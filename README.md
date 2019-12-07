@@ -5,9 +5,9 @@
 
 | |Full Name|Student ID|
 |:--:|:--|:--:|
-| 1 | Kieu Dang Nam | 20176830 |
-| 2 | Le Minh Quang | 20176856 |
-| 3 | Nguyen Trung Thanh | 20176874 |
+| 1 | [Kieu Dang Nam](https://github.com/dangnam739) | 20176830 |
+| 2 | [Le Minh Quang](https://github.com/lequang-hp) | 20176856 |
+| 3 | [Nguyen Trung Thanh](https://github.com/thanhhff) | 20176874 |
 
 - **Database Name**: Hotel Reservation 
 
