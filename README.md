@@ -1,4 +1,7 @@
 # Hotel Reservation Database Lab Project
+[![Hotel Reservation Version](https://img.shields.io/visual-studio-marketplace/v/swellaby.rust-pack?color=1&label=Hotel%20Reservation%20Version&logo=1&logoColor=1)](https://img.shields.io/visual-studio-marketplace/v/swellaby.rust-pack?color=1&label=Hotel%20Reservation%20Version&logo=1&logoColor=1)
+
+The main highlight of this Hotel Reservation is the `project_create_table.sql` and `project_insert.sql` resources for managing databases and database data. Providers for MySQL. See usage documentation below.
 
 ## 1. Introduction 
 - **Members**
