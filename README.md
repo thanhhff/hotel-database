@@ -52,4 +52,13 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 
 
 - **Nam's Queries**
-
+1)  Liệt kê số phòng được đặt nhiều nhất của từng khách sạn.
+2)  Tính mức chi tiêu trung bình của khách hàng ở mỗi khách sạn.
+3)  Tìm tên, mức chi tiêu, số ngày ở của khách hàng có số ngày lưu lại tại khách sạn ở Hà Nội là lâu nhất.
+4)  Đưa ra doanh thu của từng khách sạn tại Hà Nội tương ứng với từng tỉnh thành.
+5)  Đưa ra tên khách sạn có số lượng lượt đặt phòng nhiều nhất trong tháng 12/2019
+6)  Tìm ra room_id, floor, tên khách sạn của phòng được khách hàng đặt ở tầng cao nhất.
+7)  Tìm phòng Đôi và có mức giảm giá nhiều nhất trong tháng 12 ở TP Hồ Chí Minh.
+8)  Tính mức giảm giá trung bình của mỗi khách sạn trong tháng 10
+9)  Đưa ra tổng số khách Nam, Nữ đã từng đặt phòng tương ứng với mỗi khách sạn.
+10) Đưa ra thông tin đầy đủ của các phòng, tên khách sạn tương ứng có từ 2 khách hàng trở lên đặt phòng trong tháng 2 hoặc tháng 12 tại Hà Nội.
