@@ -2,9 +2,12 @@
 
 ## 1. Introduction 
 - **Members**
-  -  Nguyễn Trung Thành     - MSSV: 20176874
-  -  Lê Minh Quang          - MSSV: 20176856
-  -  Kiều Đăng Nam          - MSSV: 20176830
+
+| |Full Name|Student ID|
+|:--:|:--|:--:|
+| 1 | Kieu Dang Nam | 20176830 |
+| 2 | Le Minh Quang | 20176856 |
+| 3 | Nguyen Trung Thanh | 20176874 |
 
 - **Database Name**: Hotel Reservation 
 
