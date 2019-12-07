@@ -12,7 +12,7 @@
 ![alt text](project_diagram_v3.png)
 
 ## 2. Create Databse
--  [Create Tables] (https://github.com/thanhhff/hotel-database/blob/master/project_create_table.sql)
+-  [Create Tables](https://github.com/thanhhff/hotel-database/blob/master/project_create_table.sql)
   - Locations
   - Hotels
   - Sections
@@ -21,7 +21,7 @@
   - Customers
   - Reservations
   
-- [Insert data into tables] (https://github.com/thanhhff/hotel-database/blob/master/project_insert.sql)
+- [Insert data into tables](https://github.com/thanhhff/hotel-database/blob/master/project_insert.sql)
 
 ## 3. Queries
 
