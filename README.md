@@ -17,7 +17,7 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 - **Database Diagram** 
 ![alt text](project_diagram_v3.png)
 
-## 2. Create Databse
+## 2. Create Database
 -  [Create Tables](https://github.com/thanhhff/hotel-database/blob/master/project_create_table.sql)
     - Locations
     - Hotels
