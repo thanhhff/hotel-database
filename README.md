@@ -1,6 +1,6 @@
 # hotel-database
 
-Các File project_insert + project_hr ở bên ngoài có vẻ ổn! Chạy thử lại các File này đi nhé!
+Các File project_insert + project_create_table ở bên ngoài có vẻ ổn! Chạy thử lại các File này đi nhé!
 
 # Viết nghĩa câu truy vấn vào đây !
 ---
