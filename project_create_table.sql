@@ -23,6 +23,7 @@ create table if not exists customers
     email        varchar(30) not null unique,
     phone_number varchar(10) not null,
     location_id  int,
+    gender       varchar(5),
     primary key (customer_id),
     foreign key (location_id) references locations (location_id)
 );
