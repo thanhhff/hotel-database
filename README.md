@@ -31,7 +31,7 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 
 ## 3. Queries
 
-- **Thanh's Queries**
+- [**Thanh's Queries**](https://github.com/thanhhff/hotel-database/blob/master/Query/Thanh_query.sql)
 
 1)  Đưa ra **Tên Khách Sạn**, **Tháng** mà khách sạn đó có `sale_percent` lớn nhất.
 2)  Đưa ra  **Tên Khách Sạn**, **Địa Chỉ Khách Sạn** có loại phòng `KING` rẻ nhất.
@@ -46,7 +46,7 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 
 
 
-- **Quang's Queries**
+- [**Quang's Queries**](https://github.com/thanhhff/hotel-database/blob/master/Query/Quang_query.sql)
 
 1)	Lấy ra tên khách sạn, địa điểm khách sạn có loại phòng ‘president’ đc đặt nhiều nhất
 2)	Thống kê số lượng các khách sạn ở mỗi tỉnh
@@ -60,7 +60,7 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 10)	Liệt kê các khách hàng trong năm 2019 đã ở hơn 3 tỉnh khác nhau
 
 
-- **Nam's Queries**
+- [**Nam's Queries**](https://github.com/thanhhff/hotel-database/blob/master/Query/Nam_query.sql)
 1)  Liệt kê số phòng được đặt nhiều nhất của từng khách sạn.
 2)  Tính mức chi tiêu trung bình của khách hàng ở mỗi khách sạn.
 3)  Tìm tên, mức chi tiêu, số ngày ở của khách hàng có số ngày lưu lại tại khách sạn ở Hà Nội là lâu nhất.
