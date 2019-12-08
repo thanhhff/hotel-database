@@ -15,10 +15,17 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 - **Database Name**: Hotel Reservation 
 
 - **Database Diagram** 
+
 ![alt text](Diagram/project_diagram_v3.png)
 
+- **Advantages**
+    - Help you to built a Holtel Booking System.
+    - Manage hotel reservations
+    - Gather information about hotel reservation need
+    - Recommend strategy of development of Hotel
+
 ## 2. Create Database
--  [Create Tables](https://github.com/thanhhff/hotel-database/blob/master/project_create_table.sql)
+-  [**Create Tables**](https://github.com/thanhhff/hotel-database/blob/master/project_create_table.sql)
     - Locations
     - Hotels
     - Sections
@@ -27,7 +34,7 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
     - Customers
     - Reservations
   
-- [Insert data into tables](https://github.com/thanhhff/hotel-database/blob/master/project_insert.sql)
+- [**Insert data into tables**](https://github.com/thanhhff/hotel-database/blob/master/project_insert.sql)
 
 ## 3. Queries
 
