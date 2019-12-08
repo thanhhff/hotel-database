@@ -52,10 +52,10 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 2)	Thống kê số lượng các khách sạn ở mỗi tỉnh
 3)	Kể id phòng đc thuê nhiều nhất tại khách sạn ‘Royal Hotel’ trong năm 2019
 4)	Tên khách hàng, Tên ks, id phòng giá rẻ nhất mà khách đã đặt trong trường hợp ng này chỉ ở 3 ngày
-5)	Liệt kê các phòng đôi ở tầng 4 của khách sạn ‘Tan Son Nhat Hotel’
+5)	Liệt kê các phòng đôi ở tầng 5 của khách sạn ‘Royal Hotel’
 6)	Tỉnh nào có nhiều người đặt phòng nhất trong tháng 6
-7)	Thống kê doanh thu các khách sạn
-8)	Liệt kê những khách sạn mà Lưu Việt Tùng đã ở trong tháng 3/2019
+7)	Thống kê doanh thu các khách sạn trong 2019 theo chiều giảm dần
+8)	Liệt kê những khách sạn mà Lưu Việt Tùng đã ở trong 2019
 9)	Khách có xu hướng ở tầng mấy nhất.
 10)	Liệt kê các khách hàng trong năm 2019 đã ở hơn 3 tỉnh khác nhau
 
