@@ -139,3 +139,23 @@ where h.hotel_id in (select hotels.hotel_id
 group by r.room_id
 having count(case when month(rv.day_start) = '2' then 1 end) >= 2
     or count(case when month(rv.day_start) = '12' then 1 end) >= 2;
+                                                        
+
+-- Câu 11: Thống kê số lượt đặt phòng theo từng tháng của mỗi khách sạn
+
+select  h.hotel_name  as 'Tên Khách sạn',
+	 count(case when month(rv.day_start) = '1'  then 1 end ) as 'Tháng 1',
+        count(case when month(rv.day_start) = '2'  then 1 end ) as 'Tháng 2',
+        count(case when month(rv.day_start) = '3'  then 1 end ) as 'Tháng 3',
+        count(case when month(rv.day_start) = '4'  then 1 end ) as 'Tháng 4',
+        count(case when month(rv.day_start) = '5'  then 1 end ) as 'Tháng 5',
+        count(case when month(rv.day_start) = '6'  then 1 end ) as 'Tháng 6',
+        count(case when month(rv.day_start) = '7'  then 1 end ) as 'Tháng 7',
+        count(case when month(rv.day_start) = '8'  then 1 end ) as 'Tháng 8',
+        count(case when month(rv.day_start) = '9'  then 1 end ) as 'Tháng 9',
+        count(case when month(rv.day_start) = '10' then 1 end ) as 'Tháng 10',
+        count(case when month(rv.day_start) = '11' then 1 end ) as 'Tháng 11',
+        count(case when month(rv.day_start) = '12' then 1 end ) as 'Tháng 12'
+from hotels h
+	natural join reservations rv
+group by h.hotel_id;
