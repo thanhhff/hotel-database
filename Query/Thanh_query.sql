@@ -1,6 +1,6 @@
 use project;
 
-### 1. Đưa ra Tên Khách Sạn, Tháng mà khách sạn đó có sale_percent lớn nhất, sắp xếp theo thứ tự giảm dần sale_percent.
+### 1. Đưa ra Tên Khách Sạn, Tháng, % Sale mà khách sạn đó có sale_percent lớn nhất, sắp xếp theo thứ tự giảm dần sale_percent.
 
 select h.hotel_name                         as "Tên Khách Sạn",
        GROUP_CONCAT(distinct s.apply_month) as "Tháng",
@@ -43,7 +43,7 @@ having count(room_type) = (select count(room_type)
                            order by count(room_type) desc
                            limit 1);
 
-### 4. Thống kê các Loại Phòng mà các khách sạn hiện có, sắp xếp theo tổng số lượng đặt phòng giảm dần.
+### 4. Thống kê các Loại Phòng mà các khách sạn hiện có, sắp xếp theo tổng số lượng đặt phòng giảm dần. 
 ### Yêu cầu in ra Tên Khách Sạn, Các Loại Phòng, Tổng Số Lượng Phòng đã được đặt.
 
 select hotel_name                       as 'Tên Khách Sạn',
@@ -56,7 +56,7 @@ group by hotel_name
 order by count(customer_id) desc;
 
 
-### 5. Đưa ra Tên Khách Hàng sống ở Hải Phòng mà đặt phòng khách sạn ở Hà Nội. Và cũng đưa ra Tên Khách Sạn đã ở.
+### 5. Đưa ra Tên Khách Hàng sống ở Hải Phòng mà đặt phòng khách sạn ở Hà Nội. Yêu cầu đưa thêm Tên Khách Sạn đã ở.
 
 select c.name                                                             as 'Tên Khách Hàng',
        (select hotel_name from hotels where hotels.hotel_id = r.hotel_id) as 'Tên Khách Sạn'
@@ -68,7 +68,8 @@ where c.location_id = (select l1.location_id from locations l1 where city = 'H�
                               inner join locations l2 on h.location_id = l2.location_id
                      where city = 'Hà Nội');
 
-### 6. Đưa ra Tên Khách Hàng, Địa Chỉ Khách Hàng, Ngày Bắt Đầu, Ngày Kết Thúc, Thời Gian  của khách hàng đã từng ở khách sạn JW Marriott Hanoi
+### 6. Đưa ra Tên Khách Hàng, Địa Chỉ Khách Hàng, Ngày Bắt Đầu, Ngày Kết Thúc, Thời Gian 
+# của khách hàng đã từng ở khách sạn JW Marriott Hanoi
 # trong khoảng thời gian từ đầu tháng 01 / 2019 đến hết tháng 5 / 2019.
 
 select c.name                                                               as 'Tên Khách Hàng',
@@ -93,7 +94,7 @@ where month(day_start) >= 01
   and month(day_start) <= 04;
 
 
-### 8. Đưa ra Tên Khách Sạn, Địa Chỉ Khách Sạn, Số Lượng Đặt , Địa Chỉ Khách Hàng Từ Tỉnh Khác đến thuê.
+### 8. Đưa ra Tên Khách Sạn, Địa Chỉ Khách Sạn, Số Lượng Đặt, Địa Chỉ Khách Hàng Từ Tỉnh Khác đến thuê.
 
 select h.hotel_name                                                   as 'Tên Khách Sạn',
        (select city from locations where h.location_id = location_id) as 'Địa Chỉ Khách Sạn',
@@ -110,3 +111,23 @@ group by h.hotel_id
 order by count(c.customer_id) desc;
 
 
+### 9. Đưa ra Tên Khách Hàng ở Hà Nội thuê nhiều khách sạn nhất.
+select name as 'Tên Khách Hàng', count(r.reservation_id) as 'Số Lượng Khách Sạn Đã Thuê'
+from customers c
+         inner join reservations r on c.customer_id = r.customer_id
+where c.location_id = (select location_id from locations where city = 'Hà Nội')
+group by r.customer_id
+having count(reservation_id) = (select count(r2.reservation_id)
+                                from reservations r2
+                                group by r2.customer_id
+                                order by count(r2.reservation_id) desc
+                                limit 1);
+
+### 10. Đưa ra Tên Tỉnh Thành, Mức Chi Tiêu Trung Bình của người dân trong mỗi tỉnh thành trên cả nước, 
+### sắp xếp theo thứ tự chi tiêu giảm dần.
+select l.city, avg(r.price)
+from locations l
+         inner join customers c on l.location_id = c.location_id
+         inner join reservations r on c.customer_id = r.customer_id
+group by l.location_id
+order by avg(r.price) desc;
