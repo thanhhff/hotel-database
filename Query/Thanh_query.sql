@@ -8,7 +8,7 @@ select h.hotel_name                         as "Tên Khách Sạn",
 from hotels h
          inner join rooms r on h.hotel_id = r.hotel_id
          inner join sales s on r.sale_id = s.sale_id
-group by h.hotel_name
+group by h.hotel_id
 order by max(sale_percent) desc;
 
 ### 2. Đưa ra Tên Khách Sạn, Địa Chỉ Khách Sạn, Giá Phòng có loại phòng KING rẻ nhất.
@@ -19,7 +19,7 @@ from hotels h
          inner join reservations r on h.hotel_id = r.hotel_id
          inner join sections s on h.hotel_id = s.hotel_id
 where s.room_type = 'King'
-group by hotel_name, city, price
+group by h.hotel_id, city, price
 having price = (select min(r2.price)
                 from reservations r2
                          inner join sections s2 on r2.hotel_id = s2.hotel_id
@@ -83,8 +83,30 @@ where r.hotel_id = (select hotel_id from hotels where hotel_name = 'JW Marriott 
   and month(r.day_end) < 06
 order by name asc;
 
-### 7. Đưa ra Số Lượng khách NAM và khách NỮ đặt phòng trong tháng 1.
+### 7. Đưa ra Số Lượng khách NAM và khách NỮ đặt phòng trong 4 tháng đầu năm 2019.
+
+select count(case when c.gender = 'Nam' then 1 end) as 'Số Lượng Khách Nam',
+       count(case when c.gender = 'Nữ' then 1 end)  as 'Số Lượng Khách Nữ'
+from customers c
+         inner join reservations r on c.customer_id = r.customer_id
+where month(day_start) >= 01
+  and month(day_start) <= 04;
 
 
+### 8. Đưa ra Tên Khách Sạn, Địa Chỉ Khách Sạn, Số Lượng Đặt , Địa Chỉ Khách Hàng Từ Tỉnh Khác đến thuê.
+
+select h.hotel_name                                                   as 'Tên Khách Sạn',
+       (select city from locations where h.location_id = location_id) as 'Địa Chỉ Khách Sạn',
+       count(c.customer_id)                                           as 'Số Lượng Đặt Phòng',
+       group_concat(distinct (select city
+                              from locations
+                              where c.location_id = location_id)
+                    separator ', ')                                   as 'Địa Chỉ Khách Hàng'
+from hotels h
+         inner join reservations r on h.hotel_id = r.hotel_id
+         inner join customers c on r.customer_id = c.customer_id
+where h.location_id != c.location_id
+group by h.hotel_id
+order by count(c.customer_id) desc;
 
 
