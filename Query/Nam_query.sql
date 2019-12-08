@@ -95,3 +95,47 @@ where s.room_type = 'Double'
 group by r.room_id
 having max(sl.sale_percent);
                         
+-- Câu 8: Tính mức giảm giá trung bình của mỗi khách sạn trong tháng 1
+
+select  h.hotel_name         as 'Tên Khách sạn',
+		avg(sl.sale_percent) as 'Mức giảm giá trung bình tháng 1'
+from rooms r
+		inner join hotels h  on r.hotel_id = h.hotel_id 
+        inner join sales sl  on r.sale_id = sl.sale_id
+where sl.apply_month = 1
+group by h.hotel_id;
+
+-- Câu 9: Đưa ra tổng số khách Nam, Nữ và tổng số khách đã từng đặt phòng tương ứng với mỗi khách sạn trước ngày 20/10/2019 theo thứ tự giảm dần.
+
+select  h.hotel_name                                 as 'Tên Khách sạn',
+		count(case when c.gender='Nam' then 1  end)  as 'Số khách hàng Nam',
+        count(case when c.gender='Nữ' then 1 end)    as 'Số khách hàng Nữ',
+        count(rv.customer_id)                        as 'Tổng số khách'
+from reservations rv
+	inner join customers c on rv.customer_id = c.customer_id
+    inner join hotels h    on rv.hotel_id    = h.hotel_id
+where rv.day_start < '2019-10-20'
+group by h.hotel_id
+order by count(rv.customer_id) desc;
+        
+        
+-- Câu 10: Đưa ra thông tin đầy đủ của các phòng, tên khách sạn tương ứng có từ 2 khách hàng trở lên đặt phòng trong tháng 2 hoặc tháng 12 tại Hà Nội.
+
+select  r.room_id                as 'ID Phòng',
+		h.hotel_name             as 'Tên Khách sạn',
+        s.room_type              as 'Loại phòng',
+        sl.sale_percent          as 'Mức giảm giá',
+        count(case when month(rv.day_start) = '2'  then 1 end ) as 'Số lượt đặt trong tháng 2',
+        count(case when month(rv.day_start) = '12' then 1 end ) as 'Số lượt đặt trong tháng 12'
+from rooms r
+	natural join reservations rv
+    natural join hotels h
+    natural join sales sl
+    natural join sections s
+where h.hotel_id in (select hotels.hotel_id
+					  from hotels
+						natural join locations
+					  where locations.city = 'Hà Nôi')
+group by r.room_id
+having count(case when month(rv.day_start) = '2'  then 1 end ) >= 2
+	or count(case when month(rv.day_start) = '12' then 1 end ) >= 2;
