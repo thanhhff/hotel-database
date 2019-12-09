@@ -1,4 +1,4 @@
-###Cau 1###
+###Cau 1 Lấy ra tên khách sạn có loại phòng ‘President’ đc đặt nhiều nhất ###
 SELECT h.hotel_name as 'Tên khách sạn', COUNT(r.reservation_id) as 'Số lượng phòng'
 FROM hotels h
          JOIN reservations r ON h.hotel_id = r.hotel_id
