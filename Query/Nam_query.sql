@@ -48,7 +48,7 @@ where rv.hotel_id in (select h.hotel_id
 -- Câu 4: Thống kê số lượt đặt phòng theo từng tháng, tổng số lượt đặt phòng của mỗi khách sạn trong năm 2019
 
 select  h.hotel_name  as 'Tên Khách sạn',
-	    count(case when month(rv.day_start) = '1'  then 1 end ) as 'Tháng 1',
+	count(case when month(rv.day_start) = '1'  then 1 end ) as 'Tháng 1',
         count(case when month(rv.day_start) = '2'  then 1 end ) as 'Tháng 2',
         count(case when month(rv.day_start) = '3'  then 1 end ) as 'Tháng 3',
         count(case when month(rv.day_start) = '4'  then 1 end ) as 'Tháng 4',
@@ -86,8 +86,8 @@ having count(rv.reservation_id) = (select count(reservation_id)
 -- Câu 6: Liệt kê id các phòng ở tầng cao nhất tương ứng với mỗi khách sạn.
 
 select  h.hotel_name               as 'Tên Khách Sạn',
-		group_concat(r.room_id)    as 'ID Phòng',
-		r.floor                    as 'Tầng'
+	group_concat(r.room_id)    as 'ID Phòng',
+	r.floor                    as 'Tầng'
 from rooms r
 		 natural join hotels h
 group by h.hotel_id, r.floor
