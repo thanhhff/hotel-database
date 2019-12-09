@@ -1,13 +1,15 @@
+### Nam's Queries
+
 -- Câu 1: Liệt kê danh sách các phòng được khách hàng đặt nhiều lần nhất tương ứng với mỗi khách sạn trong năm 2019
 
-select h.hotel_name             as 'Tên Khách Sạn',
+select h.hotel_name                      as 'Tên Khách Sạn',
        group_concat(distinct rv.room_id) as 'ID Phòng được đặt nhiều nhất trong năm 2019'
 from hotels h
          natural join reservations rv
 where year(rv.day_start) = '2019'
 group by h.hotel_id, rv.room_id
 having count(rv.reservation_id) = (select count(reservation_id)
-								   from reservations
+                                   from reservations
                                    where hotel_id = h.hotel_id
                                    group by room_id
                                    order by count(reservation_id) desc
@@ -44,22 +46,22 @@ where rv.hotel_id in (select h.hotel_id
 
 -- Câu 4: Thống kê số lượt đặt phòng theo từng tháng, tổng số lượt đặt phòng của mỗi khách sạn trong năm 2019
 
-select  h.hotel_name  as 'Tên Khách sạn',
-	count(case when month(rv.day_start) = '1'  then 1 end ) as 'Tháng 1',
-        count(case when month(rv.day_start) = '2'  then 1 end ) as 'Tháng 2',
-        count(case when month(rv.day_start) = '3'  then 1 end ) as 'Tháng 3',
-        count(case when month(rv.day_start) = '4'  then 1 end ) as 'Tháng 4',
-        count(case when month(rv.day_start) = '5'  then 1 end ) as 'Tháng 5',
-        count(case when month(rv.day_start) = '6'  then 1 end ) as 'Tháng 6',
-        count(case when month(rv.day_start) = '7'  then 1 end ) as 'Tháng 7',
-        count(case when month(rv.day_start) = '8'  then 1 end ) as 'Tháng 8',
-        count(case when month(rv.day_start) = '9'  then 1 end ) as 'Tháng 9',
-        count(case when month(rv.day_start) = '10' then 1 end ) as 'Tháng 10',
-        count(case when month(rv.day_start) = '11' then 1 end ) as 'Tháng 11',
-        count(case when month(rv.day_start) = '12' then 1 end ) as 'Tháng 12',
-        count(rv.reservation_id)                                as 'Tổng số lượng đặt phòng'
+select h.hotel_name                                           as 'Tên Khách sạn',
+       count(case when month(rv.day_start) = '1' then 1 end)  as 'Tháng 1',
+       count(case when month(rv.day_start) = '2' then 1 end)  as 'Tháng 2',
+       count(case when month(rv.day_start) = '3' then 1 end)  as 'Tháng 3',
+       count(case when month(rv.day_start) = '4' then 1 end)  as 'Tháng 4',
+       count(case when month(rv.day_start) = '5' then 1 end)  as 'Tháng 5',
+       count(case when month(rv.day_start) = '6' then 1 end)  as 'Tháng 6',
+       count(case when month(rv.day_start) = '7' then 1 end)  as 'Tháng 7',
+       count(case when month(rv.day_start) = '8' then 1 end)  as 'Tháng 8',
+       count(case when month(rv.day_start) = '9' then 1 end)  as 'Tháng 9',
+       count(case when month(rv.day_start) = '10' then 1 end) as 'Tháng 10',
+       count(case when month(rv.day_start) = '11' then 1 end) as 'Tháng 11',
+       count(case when month(rv.day_start) = '12' then 1 end) as 'Tháng 12',
+       count(rv.reservation_id)                               as 'Tổng số lượng đặt phòng'
 from hotels h
-	natural join reservations rv
+         natural join reservations rv
 where year(rv.day_start) = '2019'
 group by h.hotel_id
 order by count(rv.reservation_id) desc;
@@ -82,11 +84,11 @@ having count(rv.reservation_id) = (select count(reservation_id)
 
 -- Câu 6: Liệt kê id các phòng ở tầng cao nhất tương ứng với mỗi khách sạn.
 
-select  h.hotel_name               as 'Tên Khách Sạn',
-	group_concat(r.room_id)    as 'ID Phòng',
-	r.floor                    as 'Tầng'
+select h.hotel_name            as 'Tên Khách Sạn',
+       group_concat(r.room_id) as 'ID Phòng',
+       r.floor                 as 'Tầng'
 from rooms r
-		 natural join hotels h
+         natural join hotels h
 group by h.hotel_id, r.floor
 having r.floor = (select max(floor)
                   from rooms
@@ -161,15 +163,13 @@ having count(case when month(rv.day_start) = '2' then 1 end) >= 2
     or count(case when month(rv.day_start) = '12' then 1 end) >= 2;
 
 
-select h.hotel_name               as 'Tên Khách sạn',
-       group_concat(distinct r.room_id)    as 'Danh sách ID Phòng'
+select h.hotel_name                     as 'Tên Khách sạn',
+       group_concat(distinct r.room_id) as 'Danh sách ID Phòng'
 from hotels h
-	natural join rooms r
-	natural join locations l
+         natural join rooms r
+         natural join locations l
 where l.city = 'Ha Noi'
 group by h.hotel_id, r.room_id
 having r.room_id not in (select room_id
-						 from reservations
+                         from reservations
                          where month(day_start) = '12');
-
-
