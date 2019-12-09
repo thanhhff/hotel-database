@@ -91,8 +91,8 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 - [x] 5.	Liệt kê các phòng đôi ở tầng 5 của khách sạn ‘Royal Hotel’
 - [x] 6.	Tỉnh nào có nhiều người đặt phòng nhất trong tháng 6
 - [x] 7.	Thống kê doanh thu các khách sạn trong 2019 theo chiều giảm dần
-- [x] 8.	Liệt kê những khách sạn mà Lưu Việt Tùng đã ở trong 2019
-- [x] 9.	Khách có xu hướng ở tầng mấy nhất.
+- [x] 8.	Đưa ra tên các khách sạn ở Hà Nội và id các phòng chưa có người đặt ứng với các khách sạn đó trong tháng 12
+- [x] 9.	Đưa ra tên khách hàng,tên các khách sạn đã ở, tổng chi phí họ phải trả cho việc đặt phòng
 - [x] 10.	Liệt kê các khách hàng trong năm 2019 đã ở hơn 3 tỉnh khác nhau
 
 
