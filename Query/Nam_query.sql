@@ -63,15 +63,18 @@ having count(rv.reservation_id) = (select count(reservation_id)
                                    order by count(reservation_id) desc
                                    limit 1);
 
--- Câu 6: Đưa ra room_id, floor, tên khách sạn của phòng được khách hàng đặt ở tầng cao nhất.
+-- Câu 6: Liệt kê id các phòng ở tầng cao nhất tương ứng với mỗi khách sạn.
 
-select r.room_id    as 'ID Phòng',
-       r.floor      as 'Tầng',
-       h.hotel_name as 'Tên Khách Sạn'
+select  h.hotel_name               as 'Tên Khách Sạn',
+		group_concat(r.room_id)    as 'ID Phòng',
+		r.floor                    as 'Tầng'
 from rooms r
-         natural join reservations rv
-         natural join hotels h
-where
+		 natural join hotels h
+group by h.hotel_id, r.floor
+having r.floor = (select max(floor)
+                  from rooms
+                  where hotel_id = h.hotel_id)
+order by r.floor desc;
 
 
 -- Câu 7: Tìm đầy đủ thông tin của phòng Đôi và có mức giảm giá nhiều nhất trong tháng 12 ở Hà Nội.
@@ -141,10 +144,10 @@ having count(case when month(rv.day_start) = '2' then 1 end) >= 2
     or count(case when month(rv.day_start) = '12' then 1 end) >= 2;
                                                         
 
--- Câu 11: Thống kê số lượt đặt phòng theo từng tháng của mỗi khách sạn
+-- Câu 11: Thống kê số lượt đặt phòng theo từng tháng, tổng số lượt đặt phòng của mỗi khách sạn trong năm 2019
 
 select  h.hotel_name  as 'Tên Khách sạn',
-	 count(case when month(rv.day_start) = '1'  then 1 end ) as 'Tháng 1',
+	    count(case when month(rv.day_start) = '1'  then 1 end ) as 'Tháng 1',
         count(case when month(rv.day_start) = '2'  then 1 end ) as 'Tháng 2',
         count(case when month(rv.day_start) = '3'  then 1 end ) as 'Tháng 3',
         count(case when month(rv.day_start) = '4'  then 1 end ) as 'Tháng 4',
@@ -155,7 +158,10 @@ select  h.hotel_name  as 'Tên Khách sạn',
         count(case when month(rv.day_start) = '9'  then 1 end ) as 'Tháng 9',
         count(case when month(rv.day_start) = '10' then 1 end ) as 'Tháng 10',
         count(case when month(rv.day_start) = '11' then 1 end ) as 'Tháng 11',
-        count(case when month(rv.day_start) = '12' then 1 end ) as 'Tháng 12'
+        count(case when month(rv.day_start) = '12' then 1 end ) as 'Tháng 12',
+        count(rv.reservation_id)                                as 'Tổng số lượng đặt phòng'
 from hotels h
 	natural join reservations rv
-group by h.hotel_id;
+where year(rv.day_start) = '2019'
+group by h.hotel_id
+order by count(rv.reservation_id) desc;
