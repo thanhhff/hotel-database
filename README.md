@@ -57,7 +57,7 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 - [x] 1.	Lấy ra tên khách sạn, địa điểm khách sạn có loại phòng ‘president’ đc đặt nhiều nhất
 - [x] 2.	Thống kê số lượng các khách sạn ở mỗi tỉnh
 - [x] 3.	Kể id phòng đc thuê nhiều nhất tại khách sạn ‘Royal Hotel’ trong năm 2019
-- [x] 4.	Tên khách hàng, Tên ks, id phòng giá rẻ nhất mà khách đã đặt trong trường hợp ng này chỉ ở 3 ngày
+- [x] 4.	Tên khách hàng, Tên Khách sạn, id phòng giá rẻ nhất mà khách đã đặt trong trường hợp người này chỉ ở 3 ngày
 - [x] 5.	Liệt kê các phòng đôi ở tầng 5 của khách sạn ‘Royal Hotel’
 - [x] 6.	Tỉnh nào có nhiều người đặt phòng nhất trong tháng 6
 - [x] 7.	Thống kê doanh thu các khách sạn trong 2019 theo chiều giảm dần
