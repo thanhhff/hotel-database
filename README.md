@@ -20,19 +20,20 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 
 - **Advantages**
     - Help you to built a Holtel Booking System.
-    - Manage hotel reservations
-    - Gather information about hotel reservation need
-    - Recommend strategy of development of Hotel
-
+    - Manage hotel reservations.
+    - Gather information about hotel reservation need.
+    - Recommend strategy of development of Hotel.
+- **Disadvantages**
+    - Simple database.
 ## 2. Create Database
 -  [**Create Tables**](https://github.com/thanhhff/hotel-database/blob/master/project_create_table.sql)
-    - Locations
-    - Hotels
-    - Sections
-    - Sales
-    - Rooms  
-    - Customers
-    - Reservations
+    - Locations: address of city in Vietnam.
+    - Hotels: hotel in Vietnam.
+    - Sections: types of room in a hotel.
+    - Sales: discounts on hotel rooms.
+    - Rooms: rooms in the hotel.
+    - Customers: user information.
+    - Reservations: booking list.
   
 - [**Insert data into tables**](https://github.com/thanhhff/hotel-database/blob/master/project_insert.sql)
 
