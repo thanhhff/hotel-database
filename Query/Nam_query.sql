@@ -45,8 +45,28 @@ where rv.hotel_id in (select h.hotel_id
                                                                  natural join locations l
                                                         where l.city = 'Hà Nội'));
 
+-- Câu 4: Thống kê số lượt đặt phòng theo từng tháng, tổng số lượt đặt phòng của mỗi khách sạn trong năm 2019
 
--- Câu 4: Đưa ra doanh thu của từng khách sạn tại Hà Nội tương ứng với từng tỉnh thành.
+select  h.hotel_name  as 'Tên Khách sạn',
+	    count(case when month(rv.day_start) = '1'  then 1 end ) as 'Tháng 1',
+        count(case when month(rv.day_start) = '2'  then 1 end ) as 'Tháng 2',
+        count(case when month(rv.day_start) = '3'  then 1 end ) as 'Tháng 3',
+        count(case when month(rv.day_start) = '4'  then 1 end ) as 'Tháng 4',
+        count(case when month(rv.day_start) = '5'  then 1 end ) as 'Tháng 5',
+        count(case when month(rv.day_start) = '6'  then 1 end ) as 'Tháng 6',
+        count(case when month(rv.day_start) = '7'  then 1 end ) as 'Tháng 7',
+        count(case when month(rv.day_start) = '8'  then 1 end ) as 'Tháng 8',
+        count(case when month(rv.day_start) = '9'  then 1 end ) as 'Tháng 9',
+        count(case when month(rv.day_start) = '10' then 1 end ) as 'Tháng 10',
+        count(case when month(rv.day_start) = '11' then 1 end ) as 'Tháng 11',
+        count(case when month(rv.day_start) = '12' then 1 end ) as 'Tháng 12',
+        count(rv.reservation_id)                                as 'Tổng số lượng đặt phòng'
+from hotels h
+	natural join reservations rv
+where year(rv.day_start) = '2019'
+group by h.hotel_id
+order by count(rv.reservation_id) desc;
+
 
 -- Câu 5: Đưa ra tên khách sạn có số lượng lượt đặt phòng nhiều nhất trong tháng 12/2019
 
@@ -144,24 +164,4 @@ having count(case when month(rv.day_start) = '2' then 1 end) >= 2
     or count(case when month(rv.day_start) = '12' then 1 end) >= 2;
                                                         
 
--- Câu 11: Thống kê số lượt đặt phòng theo từng tháng, tổng số lượt đặt phòng của mỗi khách sạn trong năm 2019
 
-select  h.hotel_name  as 'Tên Khách sạn',
-	    count(case when month(rv.day_start) = '1'  then 1 end ) as 'Tháng 1',
-        count(case when month(rv.day_start) = '2'  then 1 end ) as 'Tháng 2',
-        count(case when month(rv.day_start) = '3'  then 1 end ) as 'Tháng 3',
-        count(case when month(rv.day_start) = '4'  then 1 end ) as 'Tháng 4',
-        count(case when month(rv.day_start) = '5'  then 1 end ) as 'Tháng 5',
-        count(case when month(rv.day_start) = '6'  then 1 end ) as 'Tháng 6',
-        count(case when month(rv.day_start) = '7'  then 1 end ) as 'Tháng 7',
-        count(case when month(rv.day_start) = '8'  then 1 end ) as 'Tháng 8',
-        count(case when month(rv.day_start) = '9'  then 1 end ) as 'Tháng 9',
-        count(case when month(rv.day_start) = '10' then 1 end ) as 'Tháng 10',
-        count(case when month(rv.day_start) = '11' then 1 end ) as 'Tháng 11',
-        count(case when month(rv.day_start) = '12' then 1 end ) as 'Tháng 12',
-        count(rv.reservation_id)                                as 'Tổng số lượng đặt phòng'
-from hotels h
-	natural join reservations rv
-where year(rv.day_start) = '2019'
-group by h.hotel_id
-order by count(rv.reservation_id) desc;
