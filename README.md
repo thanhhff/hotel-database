@@ -32,7 +32,7 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
     - Sections: types of room in a hotel.
     - Sales: discounts on hotel rooms.
     - Rooms: rooms in the hotel.
-    - Customers: user information.
+    - Customers: customer information.
     - Reservations: booking list.
   
 - [**Insert data into tables**](https://github.com/thanhhff/hotel-database/blob/master/project_insert.sql)
