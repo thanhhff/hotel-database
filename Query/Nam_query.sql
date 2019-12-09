@@ -1,20 +1,17 @@
 -- Câu 1: Liệt kê danh sách các phòng được khách hàng đặt nhiều lần nhất tương ứng với mỗi khách sạn trong năm 2019
 
 select h.hotel_name             as 'Tên Khách Sạn',
-       group_concat(rv.room_id) as 'ID Phòng được đặt nhiều nhất trong năm 2019'
+       group_concat(distinct rv.room_id) as 'ID Phòng được đặt nhiều nhất trong năm 2019'
 from hotels h
          natural join reservations rv
+where year(rv.day_start) = '2019'
 group by h.hotel_id, rv.room_id
-having rv.room_id in (select room_id
-                      from reservations
-                      where hotel_id = h.hotel_id
-                      group by room_id
-                      having count(reservation_id) = (select count(reservation_id)
-                                                      from reservations
-                                                      where hotel_id = h.hotel_id
-                                                      group by room_id
-                                                      order by count(reservation_id) desc
-                                                      limit 1));
+having count(rv.reservation_id) = (select count(reservation_id)
+								   from reservations
+                                   where hotel_id = h.hotel_id
+                                   group by room_id
+                                   order by count(reservation_id) desc
+                                   limit 1);
 
 -- Câu 2: Đưa ra mức chi tiêu trung bình của khách hàng tương ứng với từng khách sạn trong năm 2019, sắp xếp theo chiều giảm dần.
 
@@ -162,6 +159,17 @@ where h.hotel_id in (select hotels.hotel_id
 group by r.room_id
 having count(case when month(rv.day_start) = '2' then 1 end) >= 2
     or count(case when month(rv.day_start) = '12' then 1 end) >= 2;
-                                                        
+
+
+select h.hotel_name               as 'Tên Khách sạn',
+       group_concat(distinct r.room_id)    as 'Danh sách ID Phòng'
+from hotels h
+	natural join rooms r
+	natural join locations l
+where l.city = 'Ha Noi'
+group by h.hotel_id, r.room_id
+having r.room_id not in (select room_id
+						 from reservations
+                         where month(day_start) = '12');
 
 
