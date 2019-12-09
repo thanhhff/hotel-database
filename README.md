@@ -28,9 +28,18 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 ## 2. Create Database
 -  [**Create Tables**](https://github.com/thanhhff/hotel-database/blob/master/project_create_table.sql)
     - Locations: address of city in Vietnam.
+        - location_id
+        - city : name of city
     - Hotels: hotel in Vietnam.
+        - hotel_id
+        - hotel_name
+        - location_id : id location of hotel
     - Sections: types of room in a hotel.
+        - section_id
+        - hotel_id
+        - room_type : such as 'Single', 'Double', 'Triple',...
     - Sales: discounts on hotel rooms.
+    
     - Rooms: rooms in the hotel.
     - Customers: customer information.
     - Reservations: booking list.
@@ -54,7 +63,7 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 
 - [**Quang's Queries**](https://github.com/thanhhff/hotel-database/blob/master/Query/Quang_query.sql)
 
-- [x] 1.	Lấy ra tên khách sạn, địa điểm khách sạn có loại phòng ‘president’ đc đặt nhiều nhất
+- [x] 1.	Lấy ra tên khách sạn có loại phòng ‘president’ đc đặt nhiều nhất
 - [x] 2.	Thống kê số lượng các khách sạn ở mỗi tỉnh
 - [x] 3.	Kể id phòng đc thuê nhiều nhất tại khách sạn ‘Royal Hotel’ trong năm 2019
 - [x] 4.	Tên khách hàng, Tên Khách sạn, id phòng giá rẻ nhất mà khách đã đặt trong trường hợp người này chỉ ở 3 ngày
