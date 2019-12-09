@@ -388,7 +388,7 @@ WHERE rooms.room_id NOT IN (SELECT room_id FROM reservations WHERE month(day_sta
 GROUP BY h.hotel_name;
 
 #### Câu 9 ####
-SELECT c.name as 'Tên khách sạn', group_concat(h.hotel_name) as 'Tên khách sạn', SUM(r.price) as 'Tổng chi phí'
+SELECT c.name as 'Tên khách hàng', group_concat(h.hotel_name) as 'Tên khách sạn', SUM(r.price) as 'Tổng chi phí'
 FROM customers c
          JOIN reservations r ON r.customer_id = c.customer_id
          JOIN hotels h ON h.hotel_id = r.hotel_id
