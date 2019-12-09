@@ -1,4 +1,7 @@
---- Thanh's Queries ---
+use project;
+
+### Thanh's Queries
+
 ### 1. Đưa ra Tên Khách Sạn, Tháng, % Sale mà khách sạn đó có sale_percent lớn nhất, sắp xếp theo thứ tự giảm dần sale_percent.
 
 select h.hotel_name                         as "Tên Khách Sạn",
@@ -24,30 +27,29 @@ having price = (select min(r2.price)
                          inner join sections s2 on r2.hotel_id = s2.hotel_id
                 where s2.room_type = 'King');
 
-
 ### 3. Đưa ra Loại Phòng mà các khách hàng giới tính NAM có xu hướng đặt.
 
 select room_type as "Loại Phòng", count(room_type) as "Số lần đặt"
-from sections s
-         inner join reservations r on s.hotel_id = r.hotel_id
-         inner join customers c on r.customer_id = c.customer_id
+from customers c
+         inner join reservations r on c.customer_id = r.customer_id
+         natural join sections s1
 where gender = 'Nam'
 group by room_type
 having count(room_type) = (select count(room_type)
-                           from sections s2
-                                    inner join reservations r2 on s2.hotel_id = r2.hotel_id
-                                    inner join customers c2 on r2.customer_id = c2.customer_id
+                           from customers c2
+                                    inner join reservations r2 on c2.customer_id = r2.customer_id
+                                    natural join sections s2
                            where gender = 'Nam'
                            group by room_type
                            order by count(room_type) desc
                            limit 1);
 
-### 4. Thống kê các Loại Phòng mà các khách sạn hiện có, sắp xếp theo tổng số lượng đặt phòng giảm dần. 
+### 4. Thống kê các Loại Phòng mà các khách sạn hiện có, sắp xếp theo tổng số lượng đặt phòng giảm dần.
 ### Yêu cầu in ra Tên Khách Sạn, Các Loại Phòng, Tổng Số Lượng Phòng đã được đặt.
 
 select hotel_name                       as 'Tên Khách Sạn',
        group_concat(distinct room_type) as 'Các Loại Phòng',
-       count(customer_id)               as 'Số Lượng Đặt Phòng'
+       count(distinct customer_id)      as 'Số Lượng Đặt Phòng'
 from hotels h
          inner join sections s on h.hotel_id = s.hotel_id
          inner join reservations r on h.hotel_id = r.hotel_id
@@ -58,6 +60,7 @@ order by count(customer_id) desc;
 ### 5. Đưa ra Tên Khách Hàng sống ở Hải Phòng mà đặt phòng khách sạn ở Hà Nội. Yêu cầu đưa thêm Tên Khách Sạn đã ở.
 
 select c.name                                                             as 'Tên Khách Hàng',
+       (select city from locations where c.location_id = location_id)     as 'Địa Chỉ Khách Hàng',
        (select hotel_name from hotels where hotels.hotel_id = r.hotel_id) as 'Tên Khách Sạn'
 from customers c
          inner join reservations r on c.customer_id = r.customer_id
@@ -67,7 +70,7 @@ where c.location_id = (select l1.location_id from locations l1 where city = 'H�
                               inner join locations l2 on h.location_id = l2.location_id
                      where city = 'Hà Nội');
 
-### 6. Đưa ra Tên Khách Hàng, Địa Chỉ Khách Hàng, Ngày Bắt Đầu, Ngày Kết Thúc, Thời Gian 
+### 6. Đưa ra Tên Khách Hàng, Địa Chỉ Khách Hàng, Ngày Bắt Đầu, Ngày Kết Thúc, Thời Gian
 # của khách hàng đã từng ở khách sạn JW Marriott Hanoi
 # trong khoảng thời gian từ đầu tháng 01 / 2019 đến hết tháng 5 / 2019.
 
@@ -122,7 +125,7 @@ having count(reservation_id) = (select count(r2.reservation_id)
                                 order by count(r2.reservation_id) desc
                                 limit 1);
 
-### 10. Đưa ra Tên Tỉnh Thành, Mức Chi Tiêu Trung Bình của người dân trong mỗi tỉnh thành trên cả nước, 
+### 10. Đưa ra Tên Tỉnh Thành, Mức Chi Tiêu Trung Bình của người dân trong mỗi tỉnh thành trên cả nước,
 ### sắp xếp theo thứ tự chi tiêu giảm dần.
 select l.city, avg(r.price)
 from locations l
@@ -131,117 +134,22 @@ from locations l
 group by l.location_id
 order by avg(r.price) desc;
 
-
---- Quang's Queries ---
-
-###Cau 1###
-SELECT h.hotel_name, COUNT(r.reservation_id)
-FROM hotels h
-         JOIN reservations r ON h.hotel_id = r.hotel_id
-         JOIN sections s ON s.hotel_id = h.hotel_id
-WHERE s.room_type = 'President'
-GROUP BY h.hotel_id
-ORDER BY COUNT(r.reservation_id) DESC
-LIMIT 1;
-
-####Cau 2####
-SELECT l.city, COUNT(h.hotel_id)
-FROM locations l
-         JOIN hotels h ON l.location_id = h.location_id
-GROUP BY l.location_id
-ORDER BY COUNT(h.hotel_id);
-
-####Cau 3####
-SELECT r.room_id, COUNT(r.reservation_id)
-FROM reservations r
-         JOIN hotels h ON r.hotel_id = h.hotel_id
-WHERE h.hotel_name = 'Royal Hotel'
-  AND r.day_start >= '2019-01-01'
-  AND r.day_end <= '2019-12-31'
-GROUP BY r.room_id
-ORDER BY COUNT(r.reservation_id) DESC
-LIMIT 1;
-
-####Cau 4####
-SELECT c.name, h.hotel_name, r.room_id, r.price
-FROM customers c
-         JOIN reservations r ON c.customer_id = r.customer_id
-         JOIN hotels h ON r.hotel_id = h.hotel_id
-WHERE r.price = (SELECT MIN(r.price) FROM reservations r WHERE (day_end - day_start = 3));
-
-####Cau 5 ####
-SELECT r.room_id
-FROM rooms r
-         JOIN hotels h ON h.hotel_id = r.hotel_id
-         JOIN sections s ON r.section_id = s.section_id
-WHERE h.hotel_name = 'Royal Hotel'
-  AND r.floor = 5
-  AND s.room_type = 'Double';
-
-###Cau 6####
-SELECT l.city, count(r.reservation_id)
-FROM locations l
-         JOIN hotels h ON l.location_id = h.location_id
-         JOIN reservations r ON r.hotel_id = h.hotel_id
-WHERE r.day_start >= '2019-06-01'
-  AND r.day_end <= '2019-06-30'
-GROUP BY l.location_id
-ORDER BY COUNT(r.reservation_id) DESC
-limit 1;
-
-####Cau 7####
-SELECT h.hotel_name, SUM(r.price)
-FROM hotels h
-         JOIN reservations r ON h.hotel_id = r.hotel_id
-WHERE r.day_start >= '2019-01-01'
-  AND r.day_end <= '2019-12-31'
-GROUP BY h.hotel_id
-ORDER BY SUM(r.price) DESC;
-
-###Cau 8####
-SELECT h.hotel_name
-FROM hotels h
-         JOIN reservations r ON h.hotel_id = r.hotel_id
-         JOIN customers c ON r.customer_id = c.customer_id
-WHERE c.name = 'Lưu Việt Tùng';
-
-###Cau 9###
-SELECT rooms.floor, COUNT(r.reservation_id)
-FROM rooms
-         JOIN reservations r ON rooms.room_id = r.room_id
-GROUP BY rooms.floor
-ORDER BY COUNT(r.reservation_id) DESC
-limit 1;
-
-###Cau 10###
-SELECT c.name, group_concat(l.city)
-FROM customers c
-         JOIN reservations r ON c.customer_id = r.customer_id
-         JOIN hotels h ON h.hotel_id = r.hotel_id
-         JOIN locations l ON l.location_id = h.location_id
-GROUP BY c.customer_id
-HAVING COUNT(l.city) >= 3;
-
-
---- Nam's Queries ---
+### Nam's Queries
 
 -- Câu 1: Liệt kê danh sách các phòng được khách hàng đặt nhiều lần nhất tương ứng với mỗi khách sạn trong năm 2019
 
-select h.hotel_name             as 'Tên Khách Sạn',
-       group_concat(rv.room_id) as 'ID Phòng được đặt nhiều nhất trong năm 2019'
+select h.hotel_name                      as 'Tên Khách Sạn',
+       group_concat(distinct rv.room_id) as 'ID Phòng được đặt nhiều nhất trong năm 2019'
 from hotels h
          natural join reservations rv
+where year(rv.day_start) = '2019'
 group by h.hotel_id, rv.room_id
-having rv.room_id in (select room_id
-                      from reservations
-                      where hotel_id = h.hotel_id
-                      group by room_id
-                      having count(reservation_id) = (select count(reservation_id)
-                                                      from reservations
-                                                      where hotel_id = h.hotel_id
-                                                      group by room_id
-                                                      order by count(reservation_id) desc
-                                                      limit 1));
+having count(rv.reservation_id) = (select count(reservation_id)
+                                   from reservations
+                                   where hotel_id = h.hotel_id
+                                   group by room_id
+                                   order by count(reservation_id) desc
+                                   limit 1);
 
 -- Câu 2: Đưa ra mức chi tiêu trung bình của khách hàng tương ứng với từng khách sạn trong năm 2019, sắp xếp theo chiều giảm dần.
 
@@ -272,8 +180,28 @@ where rv.hotel_id in (select h.hotel_id
                                                                  natural join locations l
                                                         where l.city = 'Hà Nội'));
 
+-- Câu 4: Thống kê số lượt đặt phòng theo từng tháng, tổng số lượt đặt phòng của mỗi khách sạn trong năm 2019
 
--- Câu 4: Đưa ra doanh thu của từng khách sạn tại Hà Nội tương ứng với từng tỉnh thành.
+select h.hotel_name                                           as 'Tên Khách sạn',
+       count(case when month(rv.day_start) = '1' then 1 end)  as 'Tháng 1',
+       count(case when month(rv.day_start) = '2' then 1 end)  as 'Tháng 2',
+       count(case when month(rv.day_start) = '3' then 1 end)  as 'Tháng 3',
+       count(case when month(rv.day_start) = '4' then 1 end)  as 'Tháng 4',
+       count(case when month(rv.day_start) = '5' then 1 end)  as 'Tháng 5',
+       count(case when month(rv.day_start) = '6' then 1 end)  as 'Tháng 6',
+       count(case when month(rv.day_start) = '7' then 1 end)  as 'Tháng 7',
+       count(case when month(rv.day_start) = '8' then 1 end)  as 'Tháng 8',
+       count(case when month(rv.day_start) = '9' then 1 end)  as 'Tháng 9',
+       count(case when month(rv.day_start) = '10' then 1 end) as 'Tháng 10',
+       count(case when month(rv.day_start) = '11' then 1 end) as 'Tháng 11',
+       count(case when month(rv.day_start) = '12' then 1 end) as 'Tháng 12',
+       count(rv.reservation_id)                               as 'Tổng số lượng đặt phòng'
+from hotels h
+         natural join reservations rv
+where year(rv.day_start) = '2019'
+group by h.hotel_id
+order by count(rv.reservation_id) desc;
+
 
 -- Câu 5: Đưa ra tên khách sạn có số lượng lượt đặt phòng nhiều nhất trong tháng 12/2019
 
@@ -290,15 +218,18 @@ having count(rv.reservation_id) = (select count(reservation_id)
                                    order by count(reservation_id) desc
                                    limit 1);
 
--- Câu 6: Đưa ra room_id, floor, tên khách sạn của phòng được khách hàng đặt ở tầng cao nhất.
+-- Câu 6: Liệt kê id các phòng ở tầng cao nhất tương ứng với mỗi khách sạn.
 
-select r.room_id    as 'ID Phòng',
-       r.floor      as 'Tầng',
-       h.hotel_name as 'Tên Khách Sạn'
+select h.hotel_name            as 'Tên Khách Sạn',
+       group_concat(r.room_id) as 'ID Phòng',
+       r.floor                 as 'Tầng'
 from rooms r
-         natural join reservations rv
          natural join hotels h
-where
+group by h.hotel_id, r.floor
+having r.floor = (select max(floor)
+                  from rooms
+                  where hotel_id = h.hotel_id)
+order by r.floor desc;
 
 
 -- Câu 7: Tìm đầy đủ thông tin của phòng Đôi và có mức giảm giá nhiều nhất trong tháng 12 ở Hà Nội.
@@ -366,3 +297,109 @@ where h.hotel_id in (select hotels.hotel_id
 group by r.room_id
 having count(case when month(rv.day_start) = '2' then 1 end) >= 2
     or count(case when month(rv.day_start) = '12' then 1 end) >= 2;
+
+
+select h.hotel_name                     as 'Tên Khách sạn',
+       group_concat(distinct r.room_id) as 'Danh sách ID Phòng'
+from hotels h
+         natural join rooms r
+         natural join locations l
+where l.city = 'Ha Noi'
+group by h.hotel_id, r.room_id
+having r.room_id not in (select room_id
+                         from reservations
+                         where month(day_start) = '12');
+
+
+### Quang's Queries
+
+###Cau 1###
+SELECT h.hotel_name as 'Tên khách sạn', COUNT(r.reservation_id) as 'Số lượng phòng'
+FROM hotels h
+         JOIN reservations r ON h.hotel_id = r.hotel_id
+         JOIN sections s ON s.hotel_id = h.hotel_id
+WHERE s.room_type = 'President'
+GROUP BY h.hotel_id
+ORDER BY COUNT(r.reservation_id) DESC
+LIMIT 1;
+
+####Cau 2####
+SELECT l.city as 'Thành phố ', COUNT(h.hotel_id) as 'Số lượng khách sạn'
+FROM locations l
+         JOIN hotels h ON l.location_id = h.location_id
+GROUP BY l.location_id
+ORDER BY COUNT(h.hotel_id);
+
+####Cau 3####
+SELECT r.room_id as 'Số phòng', COUNT(r.reservation_id) as 'Số lần được đặt'
+FROM reservations r
+         JOIN hotels h ON r.hotel_id = h.hotel_id
+WHERE h.hotel_name = 'Royal Hotel'
+  AND r.day_start >= '2019-01-01'
+  AND r.day_end <= '2019-12-31'
+GROUP BY r.room_id
+ORDER BY COUNT(r.reservation_id) DESC
+LIMIT 1;
+
+####Cau 4####
+SELECT c.name as 'Khách hàng', h.hotel_name as 'Tên khách sạn', r.room_id as 'Số phòng', r.price as 'Giá tiền'
+FROM customers c
+         JOIN reservations r ON c.customer_id = r.customer_id
+         JOIN hotels h ON r.hotel_id = h.hotel_id
+WHERE r.price = (SELECT MIN(r.price) FROM reservations r WHERE (day_end - day_start = 3));
+
+####Cau 5 ####
+SELECT r.room_id as 'Số phòng'
+FROM rooms r
+         JOIN hotels h ON h.hotel_id = r.hotel_id
+         JOIN sections s ON r.section_id = s.section_id
+WHERE h.hotel_name = 'Royal Hotel'
+  AND r.floor = 5
+  AND s.room_type = 'Double';
+
+###Cau 6####
+SELECT l.city as 'Thành phố', count(r.reservation_id) 'Số lượng đặt'
+FROM locations l
+         JOIN hotels h ON l.location_id = h.location_id
+         JOIN reservations r ON r.hotel_id = h.hotel_id
+WHERE r.day_start >= '2019-06-01'
+  AND r.day_end <= '2019-06-30'
+GROUP BY l.location_id
+ORDER BY COUNT(r.reservation_id) DESC
+limit 1;
+
+####Cau 7####
+SELECT h.hotel_name as 'Tên khách sạn', SUM(r.price) 'Doanh thu'
+FROM hotels h
+         JOIN reservations r ON h.hotel_id = r.hotel_id
+WHERE r.day_start >= '2019-01-01'
+  AND r.day_end <= '2019-12-31'
+GROUP BY h.hotel_id
+ORDER BY SUM(r.price) DESC;
+
+#### Câu 8####
+SELECT h.hotel_name as 'Tên khách sạn', group_concat(distinct rooms.room_id) as 'Các phòng trống'
+FROM hotels h
+         JOIN reservations r ON h.hotel_id = r.hotel_id
+         JOIN rooms ON rooms.hotel_id = h.hotel_id
+         JOIN locations l ON h.location_id = l.location_id
+WHERE rooms.room_id NOT IN (SELECT room_id FROM reservations WHERE month(day_start) = 12 AND month(day_end) = 12)
+  AND l.city = 'Hà Nội'
+GROUP BY h.hotel_name;
+
+#### Câu 9 ####
+SELECT c.name as 'Tên khách sạn', group_concat(h.hotel_name) as 'Tên khách sạn', SUM(r.price) as 'Tổng chi phí'
+FROM customers c
+         JOIN reservations r ON r.customer_id = c.customer_id
+         JOIN hotels h ON h.hotel_id = r.hotel_id
+GROUP BY c.name
+ORDER BY SUM(r.price) DESC;
+
+###Cau 10###
+SELECT c.name 'Tên khách hàng', group_concat(l.city) as 'Các tỉnh đã ở'
+FROM customers c
+         JOIN reservations r ON c.customer_id = r.customer_id
+         JOIN hotels h ON h.hotel_id = r.hotel_id
+         JOIN locations l ON l.location_id = h.location_id
+GROUP BY c.customer_id
+HAVING COUNT(l.city) >= 3;
