@@ -39,10 +39,31 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
         - hotel_id
         - room_type : such as 'Single', 'Double', 'Triple',...
     - Sales: discounts on hotel rooms.
-    
+        - sale_id
+        - apply_month : month applying sale_id
+        - sale_percent    
     - Rooms: rooms in the hotel.
+        - room_id
+        - hotel_id
+        - section_id
+        - sale_id
+        - floor
     - Customers: customer information.
+        - custormer_id
+        - name : name of customer
+        - email
+        - phone_number
+        - location_id
+        - gender        
     - Reservations: booking list.
+        - reservation_id
+        - customer_id
+        - room_id
+        - hotel_id
+        - section_id
+        - day_start
+        - day_end
+        - price
   
 - [**Insert data into tables**](https://github.com/thanhhff/hotel-database/blob/master/project_insert.sql)
 
