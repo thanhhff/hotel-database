@@ -115,7 +115,7 @@ where s.room_type = 'Double'
                               natural join locations
                      where locations.city = 'Hà Nội')
   and sl.apply_month = 12
-group by r.room_id
+group by r.room_id, h.hotel_name, r.floor, sl.sale_percent
 having max(sl.sale_percent);
 
 -- Câu 8: Tính mức giảm giá trung bình của mỗi khách sạn trong tháng 1
@@ -159,18 +159,7 @@ where h.hotel_id in (select hotels.hotel_id
                      from hotels
                               natural join locations
                      where locations.city = 'Hà Nôi')
-group by r.room_id
+group by r.room_id, h.hotel_name, s.room_type, sl.sale_percent
 having count(case when month(rv.day_start) = '2' then 1 end) >= 2
     or count(case when month(rv.day_start) = '12' then 1 end) >= 2;
 
-
-select h.hotel_name                     as 'Tên Khách sạn',
-       group_concat(distinct r.room_id) as 'Danh sách ID Phòng'
-from hotels h
-         natural join rooms r
-         natural join locations l
-where l.city = 'Ha Noi'
-group by h.hotel_id, r.room_id
-having r.room_id not in (select room_id
-                         from reservations
-                         where month(day_start) = '12');
