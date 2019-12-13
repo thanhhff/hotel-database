@@ -19,7 +19,7 @@ from hotels h
          inner join reservations r on h.hotel_id = r.hotel_id
          inner join sections s on h.hotel_id = s.hotel_id
 where s.room_type = 'King'
-group by h.hotel_id, city, price
+group by h.hotel_id, price
 having price = (select min(r2.price)
                 from reservations r2
                          inner join sections s2 on r2.hotel_id = s2.hotel_id
@@ -51,7 +51,7 @@ select hotel_name                       as 'Tên Khách Sạn',
 from hotels h
          inner join sections s on h.hotel_id = s.hotel_id
          inner join reservations r on h.hotel_id = r.hotel_id
-group by hotel_name
+group by h.hotel_id
 order by count(customer_id) desc;
 
 
