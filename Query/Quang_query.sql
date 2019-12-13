@@ -31,7 +31,7 @@ SELECT c.name as 'Khách hàng', h.hotel_name as 'Tên khách sạn', r.room_id 
 FROM customers c
          JOIN reservations r ON c.customer_id = r.customer_id
          JOIN hotels h ON r.hotel_id = h.hotel_id
-WHERE r.price = (SELECT MIN(r.price) FROM reservations r WHERE (day_end - day_start = 3));
+WHERE r.day_end - r.day_start = 3 AND r.price = (SELECT MIN(price) FROM reservations WHERE day_end-day_start = 3);
 
 ####Cau 5 Liệt kê các phòng đôi ở tầng 5 của khách sạn ‘Royal Hotel’ ####
 SELECT r.room_id as 'Số phòng'
