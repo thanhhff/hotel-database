@@ -2,6 +2,10 @@
 
 The main highlight of this Hotel Reservation is the `project_create_table.sql` and `project_insert.sql` resources for managing databases and database data. Providers for MySQL. See usage documentation below.
 
+## Report 
+
+ Database Lab Report - [PDF View](https://github.com/thanhhff/hotel-database/blob/master/Report/Database%20Lab%20Report.pdf)
+
 ## 1. Introduction 
 - **Members**
 
