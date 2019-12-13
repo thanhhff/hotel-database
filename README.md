@@ -26,43 +26,40 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
     - Simple database.
 ## 2. Create Database
 -  [**Create Tables**](https://github.com/thanhhff/hotel-database/blob/master/project_create_table.sql)
-    - Locations: address of city in Vietnam.
-        - location_id
-        - city : name of city
-    - Hotels: hotel in Vietnam.
-        - hotel_id
-        - hotel_name
-        - location_id : id location of hotel
-    - Sections: types of room in a hotel.
-        - section_id
-        - hotel_id
-        - room_type : such as 'Single', 'Double', 'Triple',...
-    - Sales: discounts on hotel rooms.
-        - sale_id
-        - apply_month : month applying sale_id
-        - sale_percent    
-    - Rooms: rooms in the hotel.
-        - room_id
-        - hotel_id
-        - section_id
-        - sale_id
-        - floor
-    - Customers: customer information.
-        - custormer_id
-        - name : name of customer
-        - email
-        - phone_number
-        - location_id
-        - gender        
-    - Reservations: booking list.
-        - reservation_id
-        - customer_id
-        - room_id
-        - hotel_id
-        - section_id
-        - day_start
-        - day_end
-        - price
+    - locations: Bảng khu vực (lưu thông tin về các tỉnh, thành phố).
+        - location_id : Khóa chính, dùng để xác định mã của các tỉnh, thành phố
+        - city : tên của tỉnh, thành phố tương ứng với location_id
+    - Hotels: Bảng lưu thông tin về các khách sạn.
+        - hotel_id : Khóa chính, dùng để xác định khách sạn.
+        - hotel_name : Tên khách sạn
+        - location_id : Khóa ngoại liên kết với bảng locations để xác định khu vực của khách sạn
+    - Sections: Bảng lưu đặc điểm của mỗi phòng.
+        - section_id : Khóa chính, dùng để xác định các sections
+        - hotel_id : vừa là khóa chính cùng với section_id và là khóa ngoại liên kết đến bảng Hotels, dùng để xác định xem sections đó thuộc khách sạn nào
+        - room_type : Thể loại của phòng (phòng Đơn, Đôi, Ba, Tổng thống,...)
+    - Sales: Bảng lưu thông tin khuyến mại tương ứng với mỗi phòng thuộc khách sạn.
+        - sale_id : Khóa chính, xác định loại khuyến mại
+        - apply_month : Tháng áp dụng khuyến mại
+        - sale_percent : Phần trăm giảm giá.
+    - Rooms: Bảng lưu thông tin các phòng.
+        - room_id : Khóa chính, xác định số hiệu phòng
+        - hotel_id, section_id : vừa lá khóa chính, vừa là khóa ngoại liên kết đến bảng sections để xác định loại sections tương ứng với mỗi phòng.
+        - sale_id : Khóa ngoại liên kết đến bảng sales, dùng để xác định loại khuyến mại áp dụng cho phòng đó
+        - floor : vị trí tầng của phòng.
+    - Customers: Bảng lưu thông tin của khách hàng
+        - custormer_id : Khóa chính, dùng để xác định khách hàng
+        - name : Tên của khách hàng
+        - email : Email của khách hàng
+        - phone_number : Số điện thoại của khách hàng
+        - location_id : Khóa ngoại liên kết đến bảng locations để lưu thông tin về khu vực mà khách hàng đó sinh sống
+        - gender : Giới tính của khách hàng
+    - Reservations: Bảng lưu thông tin các lần đặt phòng
+        - reservation_id : Khóa chính, dùng để xác định đơn đặt phòng của khách hàng
+        - customer_id : Khóa ngoại, liên kết đến bảng Customers để xác định khách hàng đặt phòng
+        - room_id, hotel_id, section_id: Khóa ngoại liên kết tời bảng rooms để xác định phòng được đặt
+        - day_start : Ngày bắt đầu đặt phòng
+        - day_end : Ngày trả phòng.
+        - price : Giá phòng
   
 - [**Insert data into tables**](https://github.com/thanhhff/hotel-database/blob/master/project_insert.sql)
 
