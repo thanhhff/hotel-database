@@ -2,14 +2,15 @@
 
 -- Câu 1: Liệt kê danh sách các phòng được khách hàng đặt nhiều lần nhất tương ứng với mỗi khách sạn trong năm 2019
 
-select h.hotel_name                      as 'Tên Khách Sạn',
-       group_concat(distinct rv.room_id) as 'ID Phòng được đặt nhiều nhất trong năm 2019'
+select h.hotel_name             as 'Tên Khách Sạn',
+       rv.room_id               as 'ID Phòng được đặt nhiều nhất trong năm 2019',
+       count(rv.reservation_id) as 'Số lượt đặt phòng'
 from hotels h
          natural join reservations rv
 where year(rv.day_start) = '2019'
 group by h.hotel_id, rv.room_id
 having count(rv.reservation_id) = (select count(reservation_id)
-                                   from reservations
+								   from reservations
                                    where hotel_id = h.hotel_id
                                    group by room_id
                                    order by count(reservation_id) desc
