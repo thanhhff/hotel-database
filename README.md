@@ -6,7 +6,7 @@ The main highlight of this Hotel Reservation is the `project_create_table.sql` a
 
  |Database Lab Report - [PDF View](https://github.com/thanhhff/hotel-database/blob/master/Report/Database%20Lab%20Report.pdf)|
 |:--:|
-|<img src="Report/Cover.png" width="45%" height="40%">|
+|[<img src="Report/Cover.png" width="46%" height="40%">](https://github.com/thanhhff/hotel-database/blob/master/Report/Database%20Lab%20Report.pdf)|
 
 
 ## 1. Introduction 
