@@ -27,7 +27,8 @@ ORDER BY COUNT(r.reservation_id) DESC
 LIMIT 1;
 
 ####Cau 4 Tên khách hàng, Tên Khách sạn, id phòng giá rẻ nhất mà khách đã đặt trong trường hợp người này chỉ ở 3 ngày ####
-SELECT c.name as 'Khách hàng', h.hotel_name as 'Tên khách sạn', r.room_id as 'Số phòng', r.price as 'Giá tiền'
+SELECT c.name as 'Khách hàng', h.hotel_name as 'Tên khách sạn', r.room_id as 'Số phòng', r.price as 'Giá tiền',
+r.day_start as 'Ngay dat phong', r.day_end as 'Ngay tra phong'
 FROM customers c
          JOIN reservations r ON c.customer_id = r.customer_id
          JOIN hotels h ON r.hotel_id = h.hotel_id
