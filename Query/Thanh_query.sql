@@ -47,12 +47,12 @@ having count(room_type) = (select count(room_type)
 
 select hotel_name                       as 'Tên Khách Sạn',
        group_concat(distinct room_type) as 'Các Loại Phòng',
-       count(distinct customer_id)      as 'Số Lượng Đặt Phòng'
+       count(distinct reservation_id)   as 'Số Lượng Đặt Phòng'
 from hotels h
          inner join sections s on h.hotel_id = s.hotel_id
          inner join reservations r on h.hotel_id = r.hotel_id
 group by h.hotel_id
-order by count(customer_id) desc;
+order by count(distinct reservation_id) desc;
 
 
 ### 5. Đưa ra Tên Khách Hàng sống ở Hải Phòng mà đặt phòng khách sạn ở Hà Nội. Yêu cầu đưa thêm Tên Khách Sạn đã ở.
